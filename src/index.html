@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System-Display</title>
+    <style>
+      .logo.vanilla:hover {
+        filter: drop-shadow(0 0 2em #ffe21c);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="clock">
+      00:00:00
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    const { invoke } = window.__TAURI__.tauri;
+    const { listen } = window.__TAURI__.event;
+
+    let rgb;
+    let unlisten;
+    window.addEventListener("DOMContentLoaded", async () => {
+      unlisten = await listen("rgb", (event) => {
+        let rgb = event.payload.rgb.split(",");
+        window.document.body.style.backgroundColor = "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
+        window.document.body.style.color = "rgb("+rgb[1]+","+rgb[2]+","+rgb[0]+")";
+        console.log(event.payload.rgb);
+      });
+    });
+
+    function currentTime() {
+      let date = new Date(); 
+      let hh = date.getHours();
+      let mm = date.getMinutes();
+      let ss = date.getSeconds();
+
+      hh = (hh < 10) ? "0" + hh : hh;
+      mm = (mm < 10) ? "0" + mm : mm;
+      ss = (ss < 10) ? "0" + ss : ss;
+    
+      let time = hh + ":" + mm + ":" + ss ;
+
+      document.getElementById("clock").innerText = time; 
+      let t = setTimeout(function(){ currentTime() }, 1000);
+    } 
+    currentTime();
+  </script>
+</html>
