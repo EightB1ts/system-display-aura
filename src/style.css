@@ -1,6 +1,6 @@
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 75px;
+  font-size: 100px;
 
   color: #000000;
   background-color: #000000;
@@ -20,8 +20,8 @@ html, body {
 
 #clock {
   position: absolute;
-  left: 35%;
-  top: 20%;
+  left: 40%;
+  top: 5%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   -webkit-transform: rotate(180deg);

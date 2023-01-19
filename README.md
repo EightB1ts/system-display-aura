@@ -1,4 +1,4 @@
-# System-Display
+# System-Display-AURA
 
 Personal project built to provide real-time ASUS Aura RGB values from memory. Used for an LCD panel inside my custom PC build. First project in Rust, wanted to see how [Tauri](https://tauri.app/) compares to [ElectronJS](https://www.electronjs.org/).
 
